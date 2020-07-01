@@ -4,7 +4,9 @@
 
 1. 备份配置文件
 
-   ``` cp -a /etc/apt/sources.list /etc/apt/sources.list.bak``` 
+   ```
+   cp -a /etc/apt/sources.list /etc/apt/sources.list.bak
+   ```
 
 2. 修改source.list文件 将原本的http://archive.ubuntu.com以及http://security.ubuntu.com替换掉
 
