@@ -1,3 +1,12 @@
+---
+title: n卡安装linux黑屏问题
+comments: true
+date: 2020-06-29 16:10:10
+tags:
+- linux
+categories:
+---
+
 > n卡安装linux黑屏问题
 
 1. 正常开机,在引导菜单时按e进入引导文本编辑页面

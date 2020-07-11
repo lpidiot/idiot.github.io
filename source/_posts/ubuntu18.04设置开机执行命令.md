@@ -1,3 +1,15 @@
+---
+title: ubuntu18.04设置开机执行命令
+comments: true
+date: 2020-07-1 13:10:10
+tags:
+- linux
+- 环境配置
+categories:
+---
+
+
+
 前言
 
 - Ubuntu18.04 默认是没有 /etc/rc.local 这个文件的，需要自己创建

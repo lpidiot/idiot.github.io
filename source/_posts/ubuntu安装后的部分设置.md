@@ -1,3 +1,13 @@
+---
+title: ubuntu安装后的部分设置
+comments: true
+date: 2020-07-01 14:10:10
+tags:
+- linux
+- 环境配置
+categories:
+---
+
 ## 修改软件源
 
 默认的软件源一般是官方的软件源,在国内速度实在不行.
