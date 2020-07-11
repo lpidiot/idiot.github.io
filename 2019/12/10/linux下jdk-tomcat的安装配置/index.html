@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="notebook,A wastepaper basket">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      linux下jdk/tomcat的安装配置 | idiot
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  
+<script src="/js/qrious.js"></script>
+
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>idiot</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>linux下jdk/tomcat的安装配置</h2>
+  <p class="post-date">2019-12-10</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><blockquote>
+<p>新买了服务器，这次换ubuntu的系统镜像了。重新装了遍环境发现还是记下比较好== (图床挂了,不加图了)</p>
+</blockquote>
+<h3 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h3><p>我电脑存了以前下的jdk，所以直接传过去得了=<br>&nbsp;</p>
+<p>先安装传文件用的lrzsz -&emsp;<code>apt install lrzsz</code>  </p>
+<p>看下有没装好-&emsp;<code>dpkg -l lrzsz</code>&emsp; 出现版本号就完事了  </p>
+<p>上传文件 <code>rz -y</code> 弹出文件视图选择上传（文件存放在当前目录） </p>
+<p>先到usr把目录建好 <code>cd /usr/local</code>  <code>mkdir java</code> </p>
+<p>到创好的目录操作吧 <code>cd java</code>  </p>
+<p>解压下之前的jdk压缩包<code>tar -zxvf /root/jdk1.8.gz ./</code><br>&nbsp;</p>
+<p>配置环境变量(按实际的文件目录来填=)=&gt; </p>
+<p><code>vim /etc/profile</code> 插入以下环境<br><code>export JAVA_HOME=/usr/java/jdk1.8</code><br><code>export JRE_HOME=$JAVA_HOME/jre</code><br><code>export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/rt.jar</code><br><code>export PATH=$PATH:$JAVA_HOME/bin</code>  </p>
+<p>保存退出  </p>
+<p>更新下配置 <code>source /etc/profile</code>  </p>
+<p>java -version没问题就完事了<br>&nbsp;</p>
+<p>顺便，现在linux都预装了openjdk，以上配置之后还是会显示openjdk，切换下就好  </p>
+<p><code>sudo update-alternatives --install /usr/bin/java java /jdk绝对路径/bin/java 300</code>  </p>
+<p>over</p>
+<h3 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h3><p>这里能方便查看 <a href="https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat" target="_blank" rel="noopener">tomcat镜像</a><br>&nbsp;</p>
+<p>安装 <code>wget https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.29/bin/apache-tomcat-9.0.29.tar.gz</code> </p>
+<p>解压到自己的目录(习惯/usr/local/java/tomcat) <code>tar -zxvf apache* /usr/local/java/tomcat</code>  </p>
+<p>名字太长了改下吧= <code>mv apache* tomcat-9.0.29</code><br>&nbsp;</p>
+<p>配置环境变量<code>vim /etc/profile</code><br>添加下面的语句<br><code>export TOMCAT_HOME=/usr/local/java/tomcat/tomcat-9.0.29</code><br><code>export PATH=$PATH:$TOMCAT_HOME/bin</code>  </p>
+<p>保存退出，更新下配置<code>source /etc/profile</code></p>
+<p>over</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#linux" >
+    <span class="tag-code">linux</span>
+  </a>
+
+  <a href="/tags#环境配置" >
+    <span class="tag-code">环境配置</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/11/19/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%AD%E8%AF%B7%E6%B1%82%E5%90%8C%E6%AD%A5%E7%9A%84%E9%97%AE%E9%A2%98/">
+        <span class="nav-arrow">← </span>
+        
+          小程序中请求同步的问题
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2019/12/10/linux%E4%B8%8Bmysql%E5%AE%89%E8%A3%85%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+        
+          linux下mysql安装的一些坑
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    <!--
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    -->
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <!-- 
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+     -->
+    <!-- 二维码 END -->
+	
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  
+	<br/>
+	  <div id="vcomments"></div>
+	<!-- <span id="busuanzi_container_page_pv"> 
+  本文阅读量<span id="busuanzi_value_page_pv"></span>
+</span> -->
+	
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#jdk"><span class="toc-nav-text">jdk</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tomcat"><span class="toc-nav-text">tomcat</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2019/12/10/linux下jdk-tomcat的安装配置/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  //Valine
+  new Valine({
+    el: '#vcomments' ,
+    appId: 'anRDKOPOrbFjCMqHc6wEryRc-gzGzoHsz',
+    appKey: 'mtibrDYvnHsEuwLPOVpfBvti',
+    notify:true, 
+    verify:false, 
+    avatar:'mm', 
+    placeholder: '有什么想说的？(*´・ｖ・)' 
+});
+  
+  })();
+</script>
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+  <!-- <span id="busuanzi_container_site_uv"> 
+  总访问量:<span id="busuanzi_value_site_uv"></span>
+</span> -->
+<br/>
+    &copy; 2020 Created by <a href="https://hexo.io" target="_blank">Hexo</a><br/>
+	
+    主题<a href="https://github.com/yanm1ng" target="_blank" rel="noopener">vexo</a>
+
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
