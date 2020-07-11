@@ -81,7 +81,7 @@ env WINEPREFIX="$HOME/.deepinwine/Deepin-TIM" winecfg
 
  之后会打开图像设置页面 dpi调个120差不多了..太大显示很难受
 
-#### 常用软件
+#### 常用软件及配置
 
 ```
 sudo pacman -S vim
@@ -90,7 +90,110 @@ sudo pacman -S wps-office
 sudo pacman -S ttf-wps-fonts
 sudo pacman -S typora
 sudo pacman -S google-chrome
+sudo pacman -S intellij-idea-ultimate-edition-jre     #安装idea
+sudo pacman -S git    #安装git
 ```
+
+##### nodejs相关
+
+```
+sudo pacman -S nodejs    #安装nodejs
+sudo pacman -S npm	#安装npm
+npm config set registry https://registry.npm.taobao.org #npm换源
+```
+
+##### vscode
+
+到官网下载解压
+
+给目录下的code增加执行权限
+
+```
+sudo chmod +x /opt/VSCode-linux-x64/code
+```
+
+启动
+
+```
+/yourpath/VSCode-linux-x64/code
+```
+
+这样启动是没有图标的，在桌面上添加图标, 就是要在/usr/share/applications/下创建.desktop文件,如下（用户三方快捷方式在在/home/user/.local/share/applications/）
+
+```
+sudo touch /home/user/.local/share/applications/vscode.desktop
+sudo nano /home/user/.local/share/applications/vscode.desktop
+```
+
+加入
+
+```
+[Desktop Entry]
+Name=Visual Studio Code
+Comment=Multi-platform code editor for linux
+Exec=/xxx/VSCode-linux-x64/code	#这里是你的启动路径
+Icon=/usr/share/icons/code.png #图标路径
+Type=Application
+StartupNotify=true
+Categories=TextEditor;Development;Utility;
+MimeType=text/plain;
+```
+
+如果没有`usr/share/icons/code.png`就换你vscode安装目录下的
+
+`/xxx/VSCode-linux-x64/resources/app/resources/linux/cdde.png`
+
+##### mysql
+
+安装
+
+```
+sudo pacman -S mysql
+```
+
+初始化
+
+```
+sudo mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+```
+
+输出中root@localhost:后边就是你的密码
+
+如果提示UTF8MB4相关问题
+
+```
+sudo mysqld --initialize --user=mysql --basedir=/usr --datadir=/var/lib/mysql --character-set-server=UTF8MB4
+```
+
+启动服务
+
+```
+sudo systemctl start mysqld.service
+```
+
+查看mysqld状态
+
+```
+systemctl status mysqld.service
+```
+
+登录
+
+```
+mysql -u root -p
+```
+
+输入密码进入控制台
+
+
+
+最后修改密码
+
+```
+alter user 'root'@'localhost' identified with mysql_native_password by '你的密码'
+```
+
+
 
 #### 安装Aur工具
 
