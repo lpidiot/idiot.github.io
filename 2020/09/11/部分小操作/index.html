@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="notebook,A wastepaper basket">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      部分小操作 | idiot
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  
+<script src="/js/qrious.js"></script>
+
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>idiot</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>部分小操作</h2>
+  <p class="post-date">2020-09-11</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>记下几个常用命令</p>
+<h3 id="任务与端口进程"><a href="#任务与端口进程" class="headerlink" title="任务与端口进程"></a>任务与端口进程</h3><p>可通过jobs命令查看后台运行任务</p>
+<p><code>jobs</code></p>
+<p>那么就会列出所有后台执行的作业，并且每个作业前面都有个编号。</p>
+<p>如果想将某个作业调回前台控制，只需要 fg + 编号即可。</p>
+<p>fg 23</p>
+<p>查看某端口占用的线程的pid</p>
+<p><code>netstat -nlp |grep :9181</code></p>
+<p>如果忘了进程号，可以通过如下命令来查看当前运行的程序/jar包程序进程号</p>
+<p><code>ps -ef|grep xxx.jar</code></p>
+<p>或者 ps -aux | grep java</p>
+<p>//关闭进程</p>
+<p>kill -s 9 24204</p>
+<p>24204代表上一步查出的进程ID</p>
+<h3 id="linux下启动tomcat服务"><a href="#linux下启动tomcat服务" class="headerlink" title="linux下启动tomcat服务"></a>linux下启动tomcat服务</h3><p> Linux下tomcat服务的启动、关闭与错误跟踪，使用PuTTy远程连接到服务器以后，通常通过以下几种方式启动关闭tomcat服务：<br>切换到tomcat主目录下的bin目录</p>
+<p>1.启动tomcat服务<br>方式一：直接启动 ./startup.sh<br>方式二：作为服务启动 nohup ./startup.sh &amp;<br>方式三：控制台动态输出方式启动 ./catalina.sh run 动态地显示tomcat后台的控制台输出信息,Ctrl+C后退出并关闭服务</p>
+<p>解释：<br>通过方式一、方式三启动的tomcat有个弊端，当客户端连接断开的时候，tomcat服务也会立即停止，通过方式二可以作为linux服务一直运行<br>通过方式一、方式二方式启动的tomcat，其日志会写到相应的日志文件中，而不能动态地查看tomcat控制台的输出信息与错误情况，通过方式三可以以控制台模式启动tomcat服务，<br>直接看到程序运行时后台的控制台输出信息，不必每次都要很麻烦的打开catalina.out日志文件进行查看，这样便于跟踪查阅后台输出信息。tomcat控制台信息包括log4j和System.out.println()等输出的信息。</p>
+<p>2，关闭tomcat服务<br>./shutdown.sh</p>
+<h3 id="ssh上传与下载"><a href="#ssh上传与下载" class="headerlink" title="ssh上传与下载"></a>ssh上传与下载</h3><p>1、从服务器上下载文件<br>scp username@servername:/path/filename /var/www/local_dir（本地目录）</p>
+<p> 例如scp <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/test.txt  把192.168.0.101上的/var/www/test.txt 的文件下载到/var/www/local_dir（本地目录）</p>
+<p>2、上传本地文件到服务器<br>scp /path/filename username@servername:/path   </p>
+<p>例如scp /var/www/test.php  <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/  把本机/var/www/目录下的test.php文件上传到192.168.0.101这台服务器上的/var/www/目录中</p>
+<p>3、从服务器下载整个目录<br>scp -r username@servername:/var/www/remote_dir/（远程目录） /var/www/local_dir（本地目录）</p>
+<p>例如:scp -r <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/test  /var/www/  </p>
+<p>4、上传目录到服务器<br>scp  -r local_dir username@servername:remote_dir<br>例如：scp -r test  <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/   把当前目录下的test目录上传到服务器的/var/www/ 目录</p>
+<h3 id="运行jar文件"><a href="#运行jar文件" class="headerlink" title="运行jar文件"></a>运行jar文件</h3><p>方式一：</p>
+<p>Java -jar shareniu.jar</p>
+<p>特点：当前ssh窗口被锁定，可按CTRL + C打断程序运行，或直接关闭窗口，程序退出</p>
+<p>那如何让窗口不锁定？</p>
+<p>方式二</p>
+<p>java -jar shareniu.jar &amp;</p>
+<p>&amp;代表在后台运行。</p>
+<p>特定：当前ssh窗口不被锁定，但是当窗口关闭时，程序中止运行。</p>
+<p>继续改进，如何让窗口关闭时，程序仍然运行？</p>
+<p>方式三</p>
+<p>nohup java -jar shareniu.jar &amp;</p>
+<p>nohup 意思是不挂断运行命令,当账户退出或终端关闭时,程序仍然运行</p>
+<p>当用 nohup 命令执行作业时，缺省情况下该作业的所有输出被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
+<p>方式四</p>
+<p>nohup java -jar shareniu.jar &gt;temp.txt &amp;</p>
+<p>解释下 &gt;temp.txt</p>
+<p>command &gt;out.file</p>
+<p>command &gt;out.file是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</p>
+<h3 id="导出和导入mysql"><a href="#导出和导入mysql" class="headerlink" title="导出和导入mysql"></a>导出和导入mysql</h3><p>一、导出数据库<br>1、导出数据和表结构：<br>mysqldump/mysql -u用户名 -p密码 数据库名 &gt; 数据库名.sql<br><code>mysql -uroot -ppassword abc &gt; abc.sql</code></p>
+<p>2、只导出表结构：<br>mysqldump/mysql -u用户名 -p密码 -d 数据库名 &gt; 数据库名.sql<br><code>mysql -uroot -ppassword -d abc &gt; abc.sql</code></p>
+<p>另外</p>
+<p><code>show global variables like &quot;%datadir%&quot;;</code>      #查询mysql的data目录</p>
+<p>二、导入数据库（目标服务器）<br>1、首先建空数据库<br>mysql&gt;create database abc;</p>
+<p>2、导入数据库<br>（1）选择数据库<br>mysql&gt;use abc;<br>（2）设置数据库编码<br>mysql&gt;set names utf8;<br>（3）导入数据（注意sql文件的路径）<br>mysql&gt;source /home/abc/abc.sql;</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#linux" >
+    <span class="tag-code">linux</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/09/11/linux%E4%B8%8Bvscode%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">
+        <span class="nav-arrow">← </span>
+        
+          linux下vscode错误处理
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    <!--
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    -->
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <!-- 
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+     -->
+    <!-- 二维码 END -->
+	
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  
+	<br/>
+	  <div id="vcomments"></div>
+	<!-- <span id="busuanzi_container_page_pv"> 
+  本文阅读量<span id="busuanzi_value_page_pv"></span>
+</span> -->
+	
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#任务与端口进程"><span class="toc-nav-text">任务与端口进程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#linux下启动tomcat服务"><span class="toc-nav-text">linux下启动tomcat服务</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ssh上传与下载"><span class="toc-nav-text">ssh上传与下载</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行jar文件"><span class="toc-nav-text">运行jar文件</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#导出和导入mysql"><span class="toc-nav-text">导出和导入mysql</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2020/09/11/部分小操作/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+  //Valine
+  new Valine({
+    el: '#vcomments' ,
+    appId: 'anRDKOPOrbFjCMqHc6wEryRc-gzGzoHsz',
+    appKey: 'mtibrDYvnHsEuwLPOVpfBvti',
+    notify:true, 
+    verify:false, 
+    avatar:'mm', 
+    placeholder: '有什么想说的？(*´・ｖ・)' 
+});
+  
+  })();
+</script>
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+  <!-- <span id="busuanzi_container_site_uv"> 
+  总访问量:<span id="busuanzi_value_site_uv"></span>
+</span> -->
+<br/>
+    &copy; 2020 Created by <a href="https://hexo.io" target="_blank">Hexo</a><br/>
+	
+    主题<a href="https://github.com/yanm1ng" target="_blank" rel="noopener">vexo</a>
+
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>
