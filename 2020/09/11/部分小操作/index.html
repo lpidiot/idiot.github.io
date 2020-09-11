@@ -154,41 +154,83 @@
 <p>//关闭进程</p>
 <p>kill -s 9 24204</p>
 <p>24204代表上一步查出的进程ID</p>
-<h3 id="linux下启动tomcat服务"><a href="#linux下启动tomcat服务" class="headerlink" title="linux下启动tomcat服务"></a>linux下启动tomcat服务</h3><p> Linux下tomcat服务的启动、关闭与错误跟踪，使用PuTTy远程连接到服务器以后，通常通过以下几种方式启动关闭tomcat服务：<br>切换到tomcat主目录下的bin目录</p>
-<p>1.启动tomcat服务<br>方式一：直接启动 ./startup.sh<br>方式二：作为服务启动 nohup ./startup.sh &amp;<br>方式三：控制台动态输出方式启动 ./catalina.sh run 动态地显示tomcat后台的控制台输出信息,Ctrl+C后退出并关闭服务</p>
+<h3 id="linux下启动tomcat服务"><a href="#linux下启动tomcat服务" class="headerlink" title="linux下启动tomcat服务"></a>linux下启动tomcat服务</h3><p> Linux下tomcat服务的启动、关闭与错误跟踪，使用PuTTy远程连接到服务器以后，通常通过以下几种方式启动关闭tomcat服务：<br>先切换到tomcat主目录下的bin目录</p>
+<ul>
+<li>启动tomcat服务</li>
+</ul>
+<ol>
+<li>直接启动 <code>./startup.sh</code></li>
+<li>控制台动态输出方式启动 <code>./catalina.sh run</code> 动态地显示tomcat后台的控制台输出信息,Ctrl+C后退出并关闭服务</li>
+<li>作为服务启动 <code>nohup ./startup.sh &amp;</code></li>
+</ol>
 <p>解释：<br>通过方式一、方式三启动的tomcat有个弊端，当客户端连接断开的时候，tomcat服务也会立即停止，通过方式二可以作为linux服务一直运行<br>通过方式一、方式二方式启动的tomcat，其日志会写到相应的日志文件中，而不能动态地查看tomcat控制台的输出信息与错误情况，通过方式三可以以控制台模式启动tomcat服务，<br>直接看到程序运行时后台的控制台输出信息，不必每次都要很麻烦的打开catalina.out日志文件进行查看，这样便于跟踪查阅后台输出信息。tomcat控制台信息包括log4j和System.out.println()等输出的信息。</p>
-<p>2，关闭tomcat服务<br>./shutdown.sh</p>
-<h3 id="ssh上传与下载"><a href="#ssh上传与下载" class="headerlink" title="ssh上传与下载"></a>ssh上传与下载</h3><p>1、从服务器上下载文件<br>scp username@servername:/path/filename /var/www/local_dir（本地目录）</p>
-<p> 例如scp <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/test.txt  把192.168.0.101上的/var/www/test.txt 的文件下载到/var/www/local_dir（本地目录）</p>
-<p>2、上传本地文件到服务器<br>scp /path/filename username@servername:/path   </p>
+<ul>
+<li><p>关闭tomcat服务</p>
+<p><code>./shutdown.sh</code></p>
+</li>
+</ul>
+<h3 id="ssh上传与下载"><a href="#ssh上传与下载" class="headerlink" title="ssh上传与下载"></a>ssh上传与下载</h3><ul>
+<li><p>从服务器上下载文件<br>scp username@servername:/path/filename /var/www/local_dir（本地目录）例如scp <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/test.txt  把192.168.0.101上的/var/www/test.txt 的文件下载到/var/www/local_dir（本地目录）</p>
+</li>
+<li><p>上传本地文件到服务器<br>scp /path/filename username@servername:/path   </p>
 <p>例如scp /var/www/test.php  <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/  把本机/var/www/目录下的test.php文件上传到192.168.0.101这台服务器上的/var/www/目录中</p>
-<p>3、从服务器下载整个目录<br>scp -r username@servername:/var/www/remote_dir/（远程目录） /var/www/local_dir（本地目录）</p>
+</li>
+<li><p>从服务器下载整个目录<br>scp -r username@servername:/var/www/remote_dir/（远程目录） /var/www/local_dir（本地目录）</p>
 <p>例如:scp -r <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/test  /var/www/  </p>
-<p>4、上传目录到服务器<br>scp  -r local_dir username@servername:remote_dir<br>例如：scp -r test  <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/   把当前目录下的test目录上传到服务器的/var/www/ 目录</p>
-<h3 id="运行jar文件"><a href="#运行jar文件" class="headerlink" title="运行jar文件"></a>运行jar文件</h3><p>方式一：</p>
-<p>Java -jar shareniu.jar</p>
+</li>
+<li><p>上传目录到服务器<br>scp  -r local_dir username@servername:remote_dir<br>例如：scp -r test  <a href="mailto:root@192.168.0.101">root@192.168.0.101</a>:/var/www/   把当前目录下的test目录上传到服务器的/var/www/ 目录</p>
+</li>
+</ul>
+<h3 id="运行jar文件"><a href="#运行jar文件" class="headerlink" title="运行jar文件"></a>运行jar文件</h3><ul>
+<li><p>方式一：</p>
+<p><code>Java -jar shareniu.jar</code></p>
 <p>特点：当前ssh窗口被锁定，可按CTRL + C打断程序运行，或直接关闭窗口，程序退出</p>
 <p>那如何让窗口不锁定？</p>
-<p>方式二</p>
+</li>
+</ul>
+<ul>
+<li><p>方式二</p>
 <p>java -jar shareniu.jar &amp;</p>
 <p>&amp;代表在后台运行。</p>
 <p>特定：当前ssh窗口不被锁定，但是当窗口关闭时，程序中止运行。</p>
 <p>继续改进，如何让窗口关闭时，程序仍然运行？</p>
-<p>方式三</p>
+</li>
+</ul>
+<ul>
+<li><p>方式三</p>
 <p>nohup java -jar shareniu.jar &amp;</p>
 <p>nohup 意思是不挂断运行命令,当账户退出或终端关闭时,程序仍然运行</p>
 <p>当用 nohup 命令执行作业时，缺省情况下该作业的所有输出被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
-<p>方式四</p>
+</li>
+</ul>
+<ul>
+<li><p>方式四</p>
 <p>nohup java -jar shareniu.jar &gt;temp.txt &amp;</p>
 <p>解释下 &gt;temp.txt</p>
 <p>command &gt;out.file</p>
 <p>command &gt;out.file是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</p>
-<h3 id="导出和导入mysql"><a href="#导出和导入mysql" class="headerlink" title="导出和导入mysql"></a>导出和导入mysql</h3><p>一、导出数据库<br>1、导出数据和表结构：<br>mysqldump/mysql -u用户名 -p密码 数据库名 &gt; 数据库名.sql<br><code>mysql -uroot -ppassword abc &gt; abc.sql</code></p>
+</li>
+</ul>
+<h3 id="导出和导入mysql"><a href="#导出和导入mysql" class="headerlink" title="导出和导入mysql"></a>导出和导入mysql</h3><ul>
+<li><p>导出数据库<br>1、导出数据和表结构：<br>mysqldump/mysql -u用户名 -p密码 数据库名 &gt; 数据库名.sql<br><code>mysql -uroot -ppassword abc &gt; abc.sql</code></p>
 <p>2、只导出表结构：<br>mysqldump/mysql -u用户名 -p密码 -d 数据库名 &gt; 数据库名.sql<br><code>mysql -uroot -ppassword -d abc &gt; abc.sql</code></p>
 <p>另外</p>
 <p><code>show global variables like &quot;%datadir%&quot;;</code>      #查询mysql的data目录</p>
-<p>二、导入数据库（目标服务器）<br>1、首先建空数据库<br>mysql&gt;create database abc;</p>
-<p>2、导入数据库<br>（1）选择数据库<br>mysql&gt;use abc;<br>（2）设置数据库编码<br>mysql&gt;set names utf8;<br>（3）导入数据（注意sql文件的路径）<br>mysql&gt;source /home/abc/abc.sql;</p>
+</li>
+<li><p>导入数据库（目标服务器）</p>
+<ol>
+<li><p>首先建空数据库<br>mysql&gt;create database abc;</p>
+</li>
+<li><p>导入数据库</p>
+<ol>
+<li>选择数据库<br>mysql&gt;use abc;</li>
+<li>设置数据库编码<br>mysql&gt;set names utf8;</li>
+<li>导入数据（注意sql文件的路径）<br>mysql&gt;source /home/abc/abc.sql;</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
 </section>
     <!-- Tags START -->
     
